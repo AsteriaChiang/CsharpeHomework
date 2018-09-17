@@ -16,5 +16,32 @@ namespace topic5
         {
             InitializeComponent();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            float a = float.Parse(textBox1.Text);
+            float b = float.Parse(textBox2.Text);
+            textBox3.Text = (a * b).ToString();
+        }
+
     }
 }
