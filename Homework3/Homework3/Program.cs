@@ -118,32 +118,49 @@ namespace Homework3
             }
 
         }
-
-        public static void Main(string[] args)
+        //简单工厂
+        class Factory
         {
-            System.Console.WriteLine("Please input the height and width length of the triangle");
-            float triheight = float.Parse(System.Console.ReadLine());
-            float triwidth = float.Parse(System.Console.ReadLine());
-            System.Console.WriteLine("Please input the side length of the square");
-            float seqside = float.Parse(System.Console.ReadLine());
-            System.Console.WriteLine("Please input the rad length of the circle");
-            float circlerad = float.Parse(System.Console.ReadLine());
-            System.Console.WriteLine("Please input the height and width length of the rectangle");
-            float rectheight = float.Parse(System.Console.ReadLine());
-            float rectwidth = float.Parse(System.Console.ReadLine());
-            Shape[] shapes =
+            //静态工厂方法  
+            public static Shape getShape(String Id)
             {
-                new Square(seqside, "Sequare"),
-                new Circle(circlerad,"Circle"),
-                new Triangle(triheight,triwidth,"Triangle"),
-                new Rectangle(rectheight,rectwidth,"Rectangle")
-            };
-            System.Console.WriteLine("Shapes' Areas");
-            foreach (Shape s in shapes)
-            {
-                System.Console.WriteLine(s);
+                Shape shape = null;
+                if (Id.Equals("Triangle"))
+                {
+                    System.Console.WriteLine("Please input the height and width length of the triangle");
+                    float triheight = float.Parse(System.Console.ReadLine());
+                    float triwidth = float.Parse(System.Console.ReadLine());
+                    shape = new Triangle(triheight,triwidth,"Triangle");
+                }
+                else if (Id.Equals("Circle"))
+                {
+                    System.Console.WriteLine("Please input the rad length of the circle");
+                    float circlerad = float.Parse(System.Console.ReadLine());
+                    shape = new Circle(circlerad,"Circle");
+                }
+                else if (Id.Equals("Square"))
+                {
+                    System.Console.WriteLine("Please input the side length of the square");
+                    float seqside = float.Parse(System.Console.ReadLine());
+                    shape = new Square(seqside,"Square");
+                }
+                else if (Id.Equals("Rectangle"))
+                {
+                    System.Console.WriteLine("Please input the height and width length of the rectangle");
+                    float rectheight = float.Parse(System.Console.ReadLine());
+                    float rectwidth = float.Parse(System.Console.ReadLine());
+                    shape = new Rectangle(rectheight,rectwidth,"Rectangle");
+                }
+                return shape;
             }
         }
-    }
-  
+        public static void Main(string[] args)
+        {
+            System.Console.WriteLine("Please input the type of shape");
+            string Id = System.Console.ReadLine();
+            Shape shape;
+            shape = Factory.getShape(Id);
+            System.Console.WriteLine(shape);
+        }
+    } 
 }
