@@ -35,22 +35,55 @@ namespace Homework3
                 get;
             }
 
-            public virtual void Draw()
-            {
-                Console.WriteLine("Draw");
-            }
-
             public override string ToString()
             {
-                return myId + "Area=" + string.Format("{0:F2}", Area);
+                return myId + "Area = " + string.Format("{0:F2}", Area);
             }
         }
+        //三角形
+        public class Triangle : Shape
+        {
+            private float myHight;
+            private float myWidth;
 
+            public Triangle(float hight,float width, string id) : base(id)
+            {
+                myHight = hight;
+                myWidth = width;
+            }
+
+            public override double Area
+            {
+                get
+                {
+                    return (myHight * myWidth)/2;
+                }
+            }
+        }
+        //圆形
+        public class Circle : Shape
+        {
+            private float myRad;
+
+            public Circle(float rad, string id) : base(id)
+            {
+                myRad = rad;
+            }
+
+            public override double Area
+            {
+                get
+                {
+                    return myRad * myRad * System.Math.PI;
+                }
+            }
+        }
+        //正方形
         public class Square : Shape
         {
-            private int mySide;
+            private float mySide;
 
-            public Square(int side,string id):base(id)
+            public Square(float side, string id) : base(id)
             {
                 mySide = side;
             }
@@ -63,41 +96,14 @@ namespace Homework3
                 }
             }
 
-            public override void Draw()
-            {
-                Console.WriteLine(mySide);
-            }
         }
-
-        public class Circle : Shape
-        {
-            private int myRad;
-
-            public Circle(int rad, string id) : base(id)
-            {
-                myRad = rad;
-            }
-
-            public override double Area
-            {
-                get
-                {
-                    return myRad * myRad * System.Math.PI;
-                }
-            }
-
-            public override void Draw()
-            {
-                Console.WriteLine(myRad);
-            }
-        }
-
+        //长方形
         public class Rectangle : Shape
         {
-            private int myHight;
-            private int myWidth;
+            private float myHight;
+            private float myWidth;
 
-            public Rectangle(int width,int height, string id) : base(id)
+            public Rectangle(float width, float height, string id) : base(id)
             {
                 myHight = height;
                 myWidth = width;
@@ -111,21 +117,33 @@ namespace Homework3
                 }
             }
 
-            public override void Draw()
-            {
-                Console.WriteLine("Rectangle");
-            }
         }
 
         public static void Main(string[] args)
         {
+            System.Console.WriteLine("Please input the height and width length of the triangle");
+            float triheight = float.Parse(System.Console.ReadLine());
+            float triwidth = float.Parse(System.Console.ReadLine());
+            System.Console.WriteLine("Please input the side length of the square");
+            float seqside = float.Parse(System.Console.ReadLine());
+            System.Console.WriteLine("Please input the rad length of the circle");
+            float circlerad = float.Parse(System.Console.ReadLine());
+            System.Console.WriteLine("Please input the height and width length of the rectangle");
+            float rectheight = float.Parse(System.Console.ReadLine());
+            float rectwidth = float.Parse(System.Console.ReadLine());
             Shape[] shapes =
             {
-                new Square(5, "Sequare #1")
+                new Square(seqside, "Sequare"),
+                new Circle(circlerad,"Circle"),
+                new Triangle(triheight,triwidth,"Triangle"),
+                new Rectangle(rectheight,rectwidth,"Rectangle")
             };
-            System.Console.WriteLine(new Square(5, "Sequare #1"));
+            System.Console.WriteLine("Shapes' Areas");
+            foreach (Shape s in shapes)
+            {
+                System.Console.WriteLine(s);
+            }
         }
-
     }
   
 }
