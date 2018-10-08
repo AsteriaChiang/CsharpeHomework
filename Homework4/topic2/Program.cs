@@ -8,7 +8,24 @@ namespace topic2
 {
     class Program
     {
-
+        struct ListObject
+        {
+            public string number;
+            public string name;
+            public string goodname;
+            public float price;
+            public int goodnumber;
+            public float total;
+            public ListObject(string orderName, string orderNumber, string detailsName, float detailsPrice, int detailsNumber, float detailsTotal)
+            {
+                number = orderNumber;
+                name = orderName;
+                goodname = detailsName;
+                price = detailsPrice;
+                goodnumber = detailsNumber;
+                total = detailsTotal;
+            }
+        }
         //订单：订单号，客户名称
         public class Order
         {
@@ -68,7 +85,7 @@ namespace topic2
         //订单服务：添加、删除、修改、查询订单
         public class OrderService
         {
-            List<Order> orderList = new List<Order>();
+            List<ListObject> orderList = new List<ListObject>();
             Order order;
             OrderDetails details;
             public OrderService(Order o, OrderDetails d)
@@ -79,7 +96,8 @@ namespace topic2
             //添加
             public void addOrder()
             {
-                orderList.Add(order);
+                ListObject Listobject= new ListObject( order.Name, order.Number, details.Name, details.Price, details.Number, details.Total );
+                orderList.Add(Listobject);
             }
             //删除
             public void deleteOrder(object o)
