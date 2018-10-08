@@ -8,6 +8,7 @@ namespace topic2
 {
     class Program
     {
+
         //订单：订单号，客户名称
         public class Order
         {
@@ -124,11 +125,11 @@ namespace topic2
             string name = Console.ReadLine();
             Console.WriteLine("请输入订单包含的商品");
             string gname = Console.ReadLine();
-            Console.WriteLine("请输入订单的顾客名");
+            Console.WriteLine("请输入商品的价格");
             float price = float.Parse(Console.ReadLine());
-            Console.WriteLine("请输入订单的顾客名");
+            Console.WriteLine("请输入商品的数量");
             int gnumber = int.Parse(Console.ReadLine());
-            Console.WriteLine("请输入订单的顾客名");
+            Console.WriteLine("请输入订单的总和");
             float total = float.Parse(Console.ReadLine());
             Order order = new Order(number,name);
             OrderDetails details = new OrderDetails(gname, price, gnumber, total);
