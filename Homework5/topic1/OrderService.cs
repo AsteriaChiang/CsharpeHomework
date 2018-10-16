@@ -47,13 +47,10 @@ namespace topic1
             List<Order> result = new List<Order>();
             foreach (Order order in orderDict.Values)
             {
-                foreach (OrderDetail detail in order.Details)
+                var goods = from OrderDetail in order.Details where OrderDetail.Goods.Name == goodsName select order;
+                foreach (var n in goods)
                 {
-                    if (detail.Goods.Name == goodsName)
-                    {
-                        result.Add(order);
-                        break;
-                    }
+                    result.Add(n);
                 }
             }
             return result;
@@ -61,9 +58,8 @@ namespace topic1
 
         public List<Order> QueryByCustomerName(string customerName)
         {
-            var query = orderDict.Values
-                .Where(order => order.Customer.Name == customerName);
-            return query.ToList();
+            var goods = orderDict.Values.Where(order => order.Customer.Name == customerName);
+            return goods.ToList();
         }
 
     }
