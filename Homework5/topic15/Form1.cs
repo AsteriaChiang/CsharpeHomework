@@ -35,16 +35,18 @@ namespace topic15
             double x2 = x0 + leng * k * Math.Cos(th);
             double y2 = y0 + leng * k * Math.Sin(th);
 
-            drawLine(x0, y0, x1, y1);
+            drawLine(x0, y0, x1, y1, x2, y2);
 
-            drawCayleyTree(n - 1, x1, y1, per1 * leng, th + double.Parse(textBox1.Text));
+            drawCayleyTree(n - 1, x1, y1, (double.Parse(trackBar1.Value.ToString())) / 10 * leng, th + double.Parse(textBox1.Text));
             drawCayleyTree(n - 1, x2, y2, (double.Parse(trackBar2.Value.ToString()))/10 * leng, th - double.Parse(textBox2.Text));
 
 
         }
-        void drawLine(double x0,double y0,double x1,double y1)
+        void drawLine(double x0,double y0,double x1,double y1,double x2, double y2)
         {
-            graphics.DrawLine(Pens.Blue, (int)x0, (int)y0, (int)x1, (int)y1);
+            Pen myPen = new Pen(Color.Red, float.Parse(comboBox1.Text.ToString()));
+            graphics.DrawLine(myPen, (int)x0, (int)y0, (int)x1, (int)y1);
+            graphics.DrawLine(myPen, (int)x0, (int)y0, (int)x2, (int)y2);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -55,6 +57,17 @@ namespace topic15
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            this.BackColor = this.colorDialog1.Color;
         }
     }
 }
