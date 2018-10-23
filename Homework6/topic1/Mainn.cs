@@ -30,32 +30,31 @@ namespace topic1
                 order1.AddDetails(orderDetails1);
                 order1.AddDetails(orderDetails2);
                 order1.AddDetails(orderDetails3);
-                //order1.AddOrderDetails(orderDetails3);
-
-
                 OrderService os = new OrderService();
+
                 os.AddOrder(order1);
-                os.Export(order1);
+                Console.WriteLine(os.QueryAllOrders());
+                
 
-                Console.WriteLine("GetAllOrders");
-                List<Order> orders = os.QueryAllOrders();
-                foreach (Order od in orders)
-                    Console.WriteLine(od.ToString());
+            //    Console.WriteLine("GetAllOrders");
+            //    List<Order> orders = os.QueryAllOrders();
+            //    foreach (Order od in orders)
+            //        Console.WriteLine(od.ToString());
 
-                Console.WriteLine("GetOrdersByCustomerName:'Customer2'");
-                orders = os.QueryByCustomerName("Customer2");
-                foreach (Order od in orders)
-                    Console.WriteLine(od.ToString());
+            //    Console.WriteLine("GetOrdersByCustomerName:'Customer2'");
+            //    orders = os.QueryByCustomerName("Customer2");
+            //    foreach (Order od in orders)
+            //        Console.WriteLine(od.ToString());
 
-                Console.WriteLine("GetOrdersByGoodsName:'apple'");
-                orders = os.QueryByGoodsName("apple");
-                foreach (Order od in orders)
-                    Console.WriteLine(od.ToString());
+            //    Console.WriteLine("GetOrdersByGoodsName:'apple'");
+            //    orders = os.QueryByGoodsName("apple");
+            //    foreach (Order od in orders)
+            //        Console.WriteLine(od.ToString());
 
-                Console.WriteLine("Remove order(id=2) and qurey all");
-                os.RemoveOrder(2);
-                os.QueryAllOrders().ForEach(
-                    od => Console.WriteLine(od));
+            //    Console.WriteLine("Remove order(id=2) and qurey all");
+            //    os.RemoveOrder(2);
+            //    os.QueryAllOrders().ForEach(
+            //        od => Console.WriteLine(od));
 
             }
             catch (Exception e)

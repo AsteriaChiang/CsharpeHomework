@@ -11,7 +11,7 @@ using System.Runtime.Serialization;
 namespace topic1
 {
     /// 实现添加订单、删除订单、修改订单、查询订单（按照订单号、商品名称、客户等字段进行查询)
-    class OrderService
+    public  class OrderService
     {
 
         public Dictionary<uint, Order> orderDict;
@@ -46,29 +46,7 @@ namespace topic1
             return orderDict[orderId];
         }
 
-        //序列化为XML
-        public void Export(Order order)
-        {
-           
-            XmlSerializer xmlser = new XmlSerializer(typeof(List<Order>));
-            String xmlFileName = "C://Users//Astoria//Desktop//order.xml";
-            FileStream fs = new FileStream(xmlFileName, FileMode.Create,FileAccess.ReadWrite);
-            xmlser.Serialize(fs, order);
-            fs.Close();
-
-        }
-        
-        //从XML文件中载入订单
-        public void Import()
-        {
-            String xmlFileName = "C://Users//Astoria//Desktop//order.xml";
-            FileStream fs = new FileStream(xmlFileName, FileMode.Open);
-            XmlSerializer xmlser = new XmlSerializer(typeof(List<Order>));
-            Order order = xmlser.Deserialize(fs) as Order;
-
-            AddOrder(order);
-        }
-
+        //由商品名查询
         public List<Order> QueryByGoodsName(string goodsName)
         {
             List<Order> result = new List<Order>();
@@ -83,10 +61,38 @@ namespace topic1
             return result;
         }
 
+        //由客户名查询
         public List<Order> QueryByCustomerName(string customerName)
         {
             var goods = orderDict.Values.Where(order => order.Customer.Name == customerName);
             return goods.ToList();
+        }
+
+        //序列化为XML
+        public void Export()
+        {
+
+            XmlSerializer xmlser = new XmlSerializer(typeof(Order));
+            String xmlFileName = "C://Users//Astoria//Desktop//order.xml";
+            FileStream fs = new FileStream(xmlFileName, FileMode.Create, FileAccess.ReadWrite);
+            foreach (Order order in orderDict.Values.ToList())
+            {
+                xmlser.Serialize(fs, order);
+            }
+            fs.Close();
+        }
+
+        //从XML文件中载入订单
+        public void Import()
+        {
+            String xmlFileName = "C://Users//Astoria//Desktop//order.xml";
+            FileStream fs = new FileStream(xmlFileName, FileMode.Open, FileAccess.Read);
+            XmlSerializer xmlser = new XmlSerializer(typeof(List<Order>));
+            Dictionary<uint, Order> orderDict1 = xmlser.Deserialize(fs) as Dictionary<uint, Order>;
+            foreach (Order order in orderDict.Values.ToList())
+            {
+                AddOrder(order);
+            }
         }
 
     }
