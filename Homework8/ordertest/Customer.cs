@@ -21,6 +21,8 @@ namespace ordertest
         /// </summary>
         public string Name { get; set; }
 
+
+
         public Customer() { }
 
         /// <summary>

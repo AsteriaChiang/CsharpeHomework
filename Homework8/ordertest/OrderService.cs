@@ -154,6 +154,22 @@ namespace ordertest {
             return result;
         }
 
-        /*other edit function with write in the future.*/
+        //验证订单号
+        public static bool IdNumber(uint orderId)
+        {
+            if (orderId.ToString().Length != 11)
+                return false;
+        
+            return true;
+        }
+
+        //验证电话号码
+        public static bool TelNumber(uint customerId)
+        {
+            if (customerId.ToString().Length != 11)
+                return false;
+
+            return true;
+        }
     }
 }
